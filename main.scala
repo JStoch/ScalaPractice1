@@ -5,7 +5,7 @@ def main(): Unit = {
   println(memoizedStirling(5, 3))
 }
 
-//zad. 1
+//calculate stirling number
 def stirling (n: Int, m: Int): Int = {
   m match
     case 0 => 0
@@ -16,6 +16,7 @@ def stirling (n: Int, m: Int): Int = {
 
 val memStirGlobal = mutable.HashMap[(Int, Int), Int]()
 
+//calculate stirling number using memStirGlobal to memorise previously calculated numbers
 def memoizedStirling(n: Int, m: Int): Int = {
   if memStirGlobal.contains((n, m)) then memStirGlobal.apply((n, m))
   else
@@ -28,7 +29,7 @@ def memoizedStirling(n: Int, m: Int): Int = {
     v
 }
 
-
+//calculate stirling number using memStir to memorise previously calculated numbers
 def memoized_stirling: (Int, Int)=> Int = {
   val memStir = mutable.HashMap[(Int, Int), Int]()
 
@@ -48,7 +49,7 @@ def memoized_stirling: (Int, Int)=> Int = {
   (n, m) => memoizedStirling(n, m)
 }
 
-//zad. 2
+//return a version of the function that uses memoization
 def make_memoize[A, B](fun: A => B): A => B = {
   val cache = mutable.HashMap[A, B]()
 
@@ -60,6 +61,7 @@ def make_memoize[A, B](fun: A => B): A => B = {
     v
 }
 
+//for testing the previous function
 def fib(n: Int):Int = {
   if n == 0 || n == 1 then n else fib(n-2) + fib(n-1)
 }
